@@ -1,0 +1,8 @@
+node_modules/
+.git/
+.github/
+wrangler.jsonc
+package.json
+package-lock.json
+.agents/ 
+.claude/ 
