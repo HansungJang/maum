@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마음, 인지행동심리상담센터</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* 부모 컨테이너: absolute 정렬용이 아닌, 흐름을 정렬하는 용도 */
+.hero-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative; /* 메인 배경용 기준점은 유지 */
+}
+
+/* 배경 이미지: 화면 너비에 맞춰 100% 유연하게 변형 */
+.hero-main-bg {
+    width: 100%;
+    height: 36vw;
+    object-fit: cover;
+    opacity: 0.4;
+    z-index: -1;
+    display: block;
+}
+
+/* 📍 최선의 퀵메뉴 설정: 음수 마진 활용 */
+.quick-menu {
+    /* absolute를 제거하고 문서 흐름에 편입시킵니다. */
+    position: relative; 
+    
+    /* 자신의 높이 절반 혹은 일정 크기만큼 위로 강제 인장시킵니다.
+       이러면 이미지 높이가 늘어나든 줄어들든 무조건 이미지 하단에 고정됩니다.
+    */
+    margin-top: -60px; 
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--c-white);
+    color: var(--c-sage);
+    box-shadow: var(--shadow-md);
+    width: 90%;
+    max-width: 1000px;
+    z-index: 10;
+}
+
+.quick-item {
+    padding: 30px 10px;
+    background: var(--c-ivory);
+    transition: var(--t);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.quick-item:hover {
+    background: var(--c-sage);
+    color: var(--c-white);
+}
+
+.contactInfo {
+    box-sizing: border-box;
+    padding-top: 8vw;
+}
+
+
+/* 📱 모바일 영역: 완벽한 대응 */
+@media (max-width: 800px) {
+    .quick-menu { 
+        grid-template-columns: repeat(2, 1fr); 
+        width: 85%;
+        /* 모바일에서는 2줄이 되므로 위로 올리는 공백을 조금 더 확보 */
+        margin-top: -20px; 
+    }
+    
+    .main-section { 
+        /* 퀵메뉴가 아래 섹션을 침범하지 않고 밀어내므로 
+           상단 패딩을 하드코딩으로 크게 잡을 필요가 없어집니다.
+        */
+        padding-top: 60px; 
+    }
+}
+    </style>
+
+<header basic-components="components/header.html"></header>
+
+</head>
+<body>
+
+    <div class="hero-main">
+        <img src="assets/background.png" alt="마음 인지행동심리상담센터 배경이미지" class="hero-main-bg">
+        
+        <div class="quick-menu">
+            <a href="categories/center_into.html" class="quick-item">
+                <span>센터소개</span>
+            </a>
+            <a href="categories/procedure.html" class="quick-item">
+                <span>상담안내</span>
+            </a>
+            <a href="categories/selfcheck.html" class="quick-item">
+                <span>자가진단</span>
+            </a>
+            <a href="categories/apply.html" class="quick-item">
+                <span>상담예약</span>
+            </a>
+        </div>
+    </div>
+    <main class="wrap main-section">
+        <div class="grid-container">
+            
+            <section class="sr-card s1">
+                <div class="sec-tag" id="home-session1-tag" contenteditable="false">Programs</div>
+                <h2 class="sec-h" id="home-session1-title" contenteditable="false">마음을 치유하는 <em>전문 프로그램</em></h2>
+                <p class="sec-sub" id="home-session1-sub" contenteditable="false">근거 기반의 인지행동치료(CBT)를 통해 당신의 일상을 재구성합니다.</p>
+
+                <!-- ✅ 슬라이더 래퍼: overflow:hidden 으로 트랙 클립 -->
+                <div class="program-slider" aria-label="전문 프로그램 슬라이드">
+
+                    <!-- ✅ 슬라이드 트랙: JS가 translateX 로 제어 -->
+                    <div class="program-track" id="programTrack">
+
+                        <!-- 카드 1 ~ 6: contents 의 field-card 그대로 이식 -->
+                        <div class="field-card">
+                            <h4>정신병리 및 정서관리</h4>
+                            <p>우울, 불안, 공황 등 신경증부터 조현병, 조울병 등 전문적인 심리 개입이 필요한 문제를 다룹니다.</p>
+                        </div>
+                        <div class="field-card">
+                            <h4>자기조절 및 스트레스</h4>
+                            <p>분노 조절, 스트레스 관리 및 CBT 기반 인지재구조화 훈련을 통해 자기관리 능력을 향상시킵니다.</p>
+                        </div>
+                        <div class="field-card">
+                            <h4>관계와 가족</h4>
+                            <p>대인관계 갈등, 가족 문제, 부부상담 및 효율적인 양육방법 코칭을 통해 관계의 회복을 돕습니다.</p>
+                        </div>
+                        <div class="field-card">
+                            <h4>청소년 상담</h4>
+                            <p>등교거부, 또래관계, 학업, 진로 등 어려움을 가진 청소년이 마음의 근육을 키워 잘 적응하도록 돕습니다.</p>
+                        </div>
+                        <div class="field-card">
+                            <h4>성인상담</h4>
+                            <p>스트레스, 심리적 상처, 취업, 연애, 관계 갈등 등을 인지재구조화·행동요법·SST로 개선합니다.</p>
+                        </div>
+                        <div class="field-card">
+                            <h4>노인상담</h4>
+                            <p>신체·사회적 기능 저하에 따른 우울, 무기력, 불면, 세대 간 소통 어려움을 다뤄 관계 회복을 돕습니다.</p>
+                        </div>
+
+                        <!--
+                            ✅ 무한루프용 클론 카드 (JS로도 가능하나 명시적 HTML 클론이 더 단순)
+                            마지막 카드 이후 처음으로 순간 리셋할 때 빈 화면 방지용
+                       
+                        <div class="field-card" aria-hidden="true">
+                            <h4>정신병리 및 정서관리</h4>
+                            <p>우울, 불안, 공황 등 신경증부터 조현병, 조울병 등 전문적인 심리 개입이 필요한 문제를 다룹니다.</p>
+                        </div>
+                        <div class="field-card" aria-hidden="true">
+                            <h4>자기조절 및 스트레스</h4>
+                            <p>분노 조절, 스트레스 관리 및 CBT 기반 인지재구조화 훈련을 통해 자기관리 능력을 향상시킵니다.</p>
+                        </div>
+                        <div class="field-card" aria-hidden="true">
+                            <h4>관계와 가족</h4>
+                            <p>대인관계 갈등, 가족 문제, 부부상담 및 효율적인 양육방법 코칭을 통해 관계의 회복을 돕습니다.</p>
+                        </div>
+                     -->
+                    </div><!-- /.program-track -->
+
+                </div><!-- /.program-slider -->
+                    <div class="slider-dots" id="sliderDots" aria-label="Program slider controls">
+                    <button class="slider-dot active" type="button" data-slide="0" aria-label="1번 프로그램"></button>
+                    <button class="slider-dot" type="button" data-slide="1" aria-label="2번 프로그램"></button>
+                    <button class="slider-dot" type="button" data-slide="2" aria-label="3번 프로그램"></button>
+                    <button class="slider-dot" type="button" data-slide="3" aria-label="4번 프로그램"></button>
+                    <button class="slider-dot" type="button" data-slide="4" aria-label="5번 프로그램"></button>
+                    <button class="slider-dot" type="button" data-slide="5" aria-label="6번 프로그램"></button>
+                    </div>
+
+                <a href="categories/specialties.html" class="btn-solid" style="margin-top:36px;">프로그램 자세히 보기</a>
+            </section>
+
+            <!-- 변경 후 -->
+            <section class="sr-card s2">
+                <div class="sec-tag" id="home-session2-tag" contenteditable="false">Experts</div>
+                <h2 class="sec-h" id="home-session2-title" contenteditable="false">따뜻한 공감의 <em>전문가</em></h2>
+                <p class="sec-sub" id="home-session2-sub" contenteditable="false">풍부한 임상 경험을 가진 상담사들이 당신과 함께 걷겠습니다.</p>
+
+                <div class="experts-grid">
+
+                    <article class="expert-card sr">
+                        <div class="expert-photo">
+                            <img src="assets/logo.png" alt="김지혜 상담사 프로필 사진">
+                        </div>
+                        <div class="expert-info">
+                            <p class="expert-role">마음, 인지행동심리상담센터 센터장</p>
+                            <h3 class="expert-name">김지혜</h3>
+                            <p class="expert-summary">인지행동치료(CBT) 전문. 우울·불안·공황·정신증·대인관계·(부부/부모-자녀)갈등 분야 10년 이상의 임상경험을 보유하고 있습니다.</p>
+                            <div class="expert-creds">
+                                <span class="cred-tag">정신건강전문요원 1급</span>
+                                <span class="cred-tag">정신건강간호사 1급</span>
+                                <span class="cred-tag">인지행동치료사</span>
+                                <span class="cred-tag">심리상담사 1급</span>
+                                <span class="cred-tag">보건교사 2급</span>
+                                <span class="cred-tag">보육교사 1급</span>                             
+                                <span class="cred-tag">New York RN</span>
+                                <span class="cred-tag">한국 간호사</span>
+                            </div>
+                            <a href="categories/experts.html" class="expert-link">프로필 자세히 보기 →</a>
+                        </div>
+                    </article>
+
+                </div><!-- /.experts-grid -->
+            </section>
+
+            <section class="sr-card s3">
+                <div class="sec-tag" id="home-session3-tag" contenteditable="false">Self Check</div>
+                <h2 class="sec-h" id="home-session3-title" contenteditable="false">내 마음의 <em>현재 온도</em>는?</h2>
+                <p class="sec-sub" id="home-session3-sub" contenteditable="false">간단한 자가진단을 통해 현재 나의 심리 상태를 점검해보세요.</p>
+                <div class="diagram-box" onclick="location.href='categories/selfcheck.html'">
+                    <img src="assets/self_check.png" alt="자가진단" class="diagram-img"> 
+                </div>
+                <a href="categories/selfcheck.html" class="btn-solid" style="margin-top:20px;">자가진단 시작하기</a>
+            </section>
+
+            <section class="sr-card s4">
+                <div class="sec-tag" id="home-session4-tag" contenteditable="false">About Me</div>
+                <h2 class="sec-h" id="home-session4-title" contenteditable="false">나를 찾아가는 <em>여정</em></h2>
+                <p class="sec-sub" id="home-session4-sub" contenteditable="false">심리검사와 상담을 통해 몰랐던 나의 내면을 깊이 있게 이해합니다.</p>
+                <div class="diagram-box" onclick="location.href='categories/aboutme.html'">
+                    <img src="assets/about_me.png" alt="나를 찾아서" class="diagram-img">
+                </div>
+                <a href="categories/aboutme.html" class="btn-solid" style="margin-top:20px;">초진기록지 작성해보기</a>
+            </section>
+
+            <section class="sr-card s5">
+                <div class="sec-tag" id="home-session5-tag" contenteditable="false">Reservation</div>
+                <h2 class="sec-h" id="home-session5-title" contenteditable="false">상담 <em>절차 및 예약</em> 안내</h2>
+                <p class="sec-sub" id="home-session5-sub" contenteditable="false">편안한 첫 방문을 위해 상담 과정과 예약 방법을 안내해 드립니다.</p>
+                <div class="diagram-box">
+                    <img src="assets/procedure_diagram1.png" alt="상담 전체 절차 다이어그램" class="diagram-img" id="index_procedure-diagram-img">
+                </div>
+                <div class = "sr-card">
+                    <a href="categories/procedure.html" class="btn-solid" style="margin-top:20px;">상담 알아보기</a>
+                </div>
+            </section>
+
+            <section class="sr-card s6" id="sr-card-s6" contenteditable="false">
+                <div class="sec-tag" id="home-session6-tag" contenteditable="false">Location</div>
+                <h2 class="sec-h" id="home-session6-title" contenteditable="false">찾아오시는 <em>길</em></h2>
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3175.1999876070445!2d127.03027329999999!3d37.2666845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b43cfa7c9dacf%3A0x1a0d9bccab5e7398!2z66eI7J2MLOyduOyngO2WieuPmeyLrOumrOyDgeuLtOyEvO2EsA!5e0!3m2!1sen!2skr!4v1774881180230!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map-box"></iframe>
+                <div></div>
+                <p class="sec-sub" id="home-session6-sub" contenteditable="false">언제든 편하게 들를 수 있는 아늑한 공간에서 기다리고 있습니다.</p>
+                <a href="categories/location.html" class="btn-solid" style="margin-top:20px;">지도 확인하기</a>
+                <div></div>
+                <h4 class="sec-h" id="home-session7-title" contenteditable="false" >약도</h4>
+                <div></div>
+                <div class="map-box sr">
+                    <a href="https://map.naver.com/" target="_blank" id="e-map-link">
+                    <img src="../assets/location.jpg" alt="지도 보기" id="img-map" style="width:100%; height:100%; contain:content;">
+                    <div class="map-overlay" id="location-map-describe" contenteditable="false">클릭하시면 지도로 연결됩니다</div>
+                    </a>
+                </div>
+
+                <div class = 'contactInfo'>
+                    <ul class="loc-list">
+                    <li class="loc-item sr">
+                        <div class="loc-ico">🔍</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-name-title" contenteditable="false">사업체명</span>
+                        <span class="loc-val" id="location-card-name-body" contenteditable="false">마음,인지행동심리상담센터</span>
+                        </div>
+                    </li>
+                    <li class="loc-item sr">
+                        <div class="loc-ico">📍</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-address-title" contenteditable="false">주소</span>
+                        <span class="loc-val" id="location-card-address-body" contenteditable="false">경기도 수원시 팔달구 경수대로466번길 58(인계동) [아이오피스 내부에 있습니다]</span>
+                        </div>
+                    </li>
+                    <li class="loc-item sr d3">
+                        <div class="loc-ico">📞</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-phone-title" contenteditable="false">전화번호</span>
+                        <span class="loc-val" id="location-card-phone-body" contenteditable="false">010-7577-6940 (문자연락만 가능)</span>
+                        </div>
+                    </li>
+                    <li class="loc-item sr d4">
+                        <div class="loc-ico">✉️</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-email-title" contenteditable="false">이메일</span>
+                        <span class="loc-val" id="location-card-email-body" contenteditable="false">jihye0708@hotmail.com</span>
+                        </div>
+                    </li>
+                    <li class="loc-item sr d5">
+                        <div class="loc-ico">🚃</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-subway-title" contenteditable="false">지하철 이용시</span>
+                        <span class="loc-val" id="location-card-subway-body1" contenteditable="false">수인분당선 (수원시청역 6번 출구)</span>
+                        <span class="loc-val" id="location-card-subway-body2" contenteditable="false">홈플러스와 수원시청 사잇 길로 쭉 내려오시면, 도보 5-7분 거리에 있습니다.</span>              
+                        </div>
+                    </li>
+                    <li class="loc-item sr d6">
+                        <div class="loc-ico">🚌</div>
+                        <div class="loc-meta">
+                        <span class="loc-lbl" id="location-card-bus-title" contenteditable="false">버스 이용시</span>
+                        <span class="loc-val" id="location-card-bus-body" contenteditable="false">KBS 수원센터에서 하차 하시면, 도보 2분 거리에 있습니다.</span>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <footer basic-components="components/footer.html"></footer>
+    <div id="toast"></div>
+    <script  src="components/components.js" defer></script>
+    <script type="module" src="main.js" defer></script>
+
+    <script>
+        (() => {
+        const slider = document.querySelector('.program-slider');
+        const track = document.getElementById('programTrack');
+        const cards = Array.from(track?.querySelectorAll('.field-card') || []);
+        const dots = Array.from(document.querySelectorAll('.slider-dot'));
+
+        if (!slider || !track || !cards.length || !dots.length) return;
+
+        const INTERVAL_MS = 3000;
+        let currentIndex = 0;
+        let timer = null;
+
+        function setActive(index) {
+            currentIndex = index;
+
+            cards.forEach((card, cardIndex) => {
+            card.classList.toggle('active', cardIndex === index);
+            });
+
+            dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle('active', dotIndex === index);
+            });
+        }
+
+        function goTo(index) {
+            const nextIndex = index >= cards.length ? 0 : index;
+            const targetCard = cards[nextIndex];
+
+            slider.scrollTo({
+            left: targetCard.offsetLeft,
+            behavior: index >= cards.length ? 'auto' : 'smooth'
+            });
+
+            setActive(nextIndex);
+        }
+
+        function next() {
+            goTo(currentIndex + 1);
+        }
+
+        function start() {
+            stop();
+            timer = setInterval(next, INTERVAL_MS);
+        }
+
+        function stop() {
+            if (timer) clearInterval(timer);
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+            goTo(index);
+            start();
+            });
+
+            dot.addEventListener('focus', () => {
+            setActive(index);
+            });
+        });
+
+        slider.addEventListener('scroll', () => {
+            const nearestIndex = cards.reduce((closestIndex, card, index) => {
+            const currentDistance = Math.abs(card.offsetLeft - slider.scrollLeft);
+            const closestDistance = Math.abs(cards[closestIndex].offsetLeft - slider.scrollLeft);
+            return currentDistance < closestDistance ? index : closestIndex;
+            }, 0);
+
+            setActive(nearestIndex);
+        }, { passive: true });
+
+        slider.addEventListener('mouseenter', stop);
+        slider.addEventListener('mouseleave', start);
+        slider.addEventListener('touchstart', stop, { passive: true });
+        slider.addEventListener('touchend', start, { passive: true });
+
+        setActive(0);
+        start();
+        })();
+
+    </script>
+</body>
+</html>
