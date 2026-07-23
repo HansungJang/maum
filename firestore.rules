@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+     match /site/{docId} {
+      allow read: if true;
+       allow write: if request.auth != null;
+    }
+    
+    match /experts/{expertId} {
+      allow read: if true;  
+      allow write: if request.auth != null;  
+    }
+    
+    match /{document=**} {
+      // 로그인된 인증 정보(request.auth)가 null이 아닐 때만 허용
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

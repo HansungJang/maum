@@ -157,5 +157,3 @@ dist
 ### Remix+CloudflareWorkers ###
 /dist
 /.mf
-
-# End of https://www.toptal.com/developers/gitignore/api/firebase,node,remix+cloudflarepages,remix+cloudflareworkers
