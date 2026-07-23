@@ -1,0 +1,21 @@
+# Created by https://www.toptal.com/developers/gitignore/api/firebase,remix+cloudflareworkers,remix+cloudflarepages,git
+# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,remix+cloudflareworkers,remix+cloudflarepages,git
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
+### Remix+CloudflarePages ###
+/functions/\[\[path\]\].js
+/functions/\[\[path\]\].js.map
+
+### Remix+CloudflareWorkers ###
+/dist
+/.mf
+
+# End of https://www.toptal.com/developers/gitignore/api/firebase,remix+cloudflareworkers,remix+cloudflarepages,git
