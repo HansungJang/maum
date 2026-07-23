@@ -5,6 +5,11 @@
 .idea
 **/node_modules/*
 **/.firebaserc
+firebase-debug.log
+firestore-debug.log
+
+.agents/
+.claude/ 
 
 ### Firebase Patch ###
 .runtimeconfig.json
